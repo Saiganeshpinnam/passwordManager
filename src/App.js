@@ -3,7 +3,25 @@ import {Component} from 'react'
 import './App.css'
 
 class App extends Component {
+  state = {
+    userWebsite: '',
+  }
+
+  onSubmitUserDetails = event => {
+    this.event.preventDefault()
+
+    const userEnteredWebsite = event.target.value
+    this.setState({
+      userWebsite: userEnteredWebsite,
+    })
+  }
+
+  getuserWebsite = event => {
+    
+  }
+
   render() {
+    const {userWebsite} = this.state
     return (
       <div className="bg-container">
         <img
@@ -11,7 +29,10 @@ class App extends Component {
           className="password-manager-image"
         />
         <div className="adding-password-bg-container">
-          <form className="adding-password-card-container">
+          <form
+            className="adding-password-card-container"
+            onSubmit={this.onSubmitUserDetails}
+          >
             <div className="user-input-container">
               <img
                 src="https://assets.ccbp.in/frontend/react-js/password-manager-website-img.png"
@@ -21,6 +42,7 @@ class App extends Component {
                 type="text"
                 placeholder="Enter Website"
                 className="user-input form-control"
+                
               />
             </div>
             <div className="user-input-container">
@@ -30,7 +52,7 @@ class App extends Component {
               />
               <input
                 type="text"
-                placeholder="Enter Website"
+                placeholder="Enter Username"
                 className="user-input form-control"
               />
             </div>
@@ -41,7 +63,7 @@ class App extends Component {
               />
               <input
                 type="text"
-                placeholder="Enter Website"
+                placeholder="Enter Password"
                 className="user-input form-control"
               />
             </div>
@@ -56,7 +78,9 @@ class App extends Component {
           />
         </div>
 
-        <div className="user-passwords-bg-container">Hello</div>
+        <div className="user-passwords-bg-container">
+          <p>{userWebsite}</p>
+        </div>
       </div>
     )
   }
