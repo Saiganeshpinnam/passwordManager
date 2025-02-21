@@ -1,0 +1,83 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-container {
+  background-color: #9ba9eb;
+
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.password-manager-image {
+  height: 40px;
+}
+.adding-password-bg-container {
+  background-color: #5763a5;
+  height: 50vh;
+  width: 80vw;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.user-passwords-bg-container {
+  background-color: #5763a5;
+  height: 50vh;
+  width: 80vw;
+  margin: 5px;
+}
+.adding-password-card-container {
+  background-color: #454f84;
+  height: 80%;
+  width: 50%;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.adding-password-image {
+  height: 80%;
+  width: 50%;
+}
+.user-input-container {
+  background-color: #ffffff;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 8px;
+}
+.registering-icon {
+  height: 35px;
+  width: 35px;
+  padding: 3px;
+}
+.user-input {
+  height: 35px;
+  width: 100%;
+}
+.add-btn {
+  background-color: #0b69ff;
+  height: 30px;
+  width: 70px;
+  color: #ffffff;
+  font-size: 15px;
+  font-family: 'Roboto';
+  border-radius: 5px;
+  border-width: 0px;
+}
