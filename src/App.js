@@ -62,7 +62,7 @@ class App extends Component {
   }
 
   deletePassword = id => {
-    const {usersPasswordsList, count} = this.state
+    const {usersPasswordsList} = this.state
     const filteredUsersPasswordData = usersPasswordsList.filter(
       eachPassword => eachPassword.id !== id,
     )
@@ -80,6 +80,7 @@ class App extends Component {
 
   render() {
     const {usersPasswordsList, searchInput, count, showPasswords} = this.state
+    const isCountZero = count
     const searchResults = usersPasswordsList.filter(eachPasswordDetails =>
       eachPasswordDetails.website.includes(searchInput),
     )
@@ -153,6 +154,7 @@ class App extends Component {
               <img
                 src="https://assets.ccbp.in/frontend/react-js/password-manager-search-img.png"
                 className="search-icon"
+                alt="search"
               />
               <input
                 type="search"
@@ -162,7 +164,6 @@ class App extends Component {
             </div>
           </div>
           <hr className="passwords-header-separator" />
-
           <div className="checkbox-container">
             <input
               type="checkbox"
@@ -172,40 +173,54 @@ class App extends Component {
             <label htmlFor="inputLabel">Show Passwords</label>
           </div>
 
-          <div className="user-given-passwords-list-container">
-            {searchResults.map(eachUserPassword => (
-              <div
-                key={eachUserPassword.id}
-                className="each-password-container"
-              >
-                <h1 className="user-initial">{eachUserPassword.username[0]}</h1>
-                <div>
-                  <p>{eachUserPassword.website}</p>
-                  <p>{eachUserPassword.username}</p>
-                  {showPasswords ? (
-                    <p>{eachUserPassword.password}</p>
-                  ) : (
-                    <img
-                      src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
-                      alt="stars"
-                    />
-                  )}
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => this.deletePassword(eachUserPassword.id)}
-                  className="delete-btn"
+          {isCountZero === 0 ? (
+            <div className="no-passwords-container">
+              <img
+                src="https://assets.ccbp.in/frontend/react-js/no-passwords-img.png"
+                alt="no passwords"
+                className="no-passwords"
+              />
+            </div>
+          ) : (
+            <div className="user-given-passwords-list-container">
+              {searchResults.map(eachUserPassword => (
+                <div
+                  key={eachUserPassword.id}
+                  className="each-password-container"
                 >
-                  <img
-                    src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png"
-                    alt="delete"
-                    className="delete-icon"
-                  />
-                </button>
-              </div>
-            ))}
-          </div>
+                  <h1 className="user-initial">
+                    {eachUserPassword.username[0]}
+                  </h1>
+                  <div>
+                    <p>{eachUserPassword.website}</p>
+                    <p>{eachUserPassword.username}</p>
+                    {showPasswords ? (
+                      <p>{eachUserPassword.password}</p>
+                    ) : (
+                      <img
+                        src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
+                        alt="stars"
+                        className="encrypted-password-image"
+                      />
+                    )}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => this.deletePassword(eachUserPassword.id)}
+                    className="delete-btn"
+                    data-testid="delete"
+                  >
+                    <img
+                      src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png"
+                      alt="delete"
+                      className="delete-icon"
+                    />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     )

@@ -148,6 +148,20 @@ body {
 .checkbox-container {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
+}
+.encrypted-password-image {
+  width: 80%;
+}
+.no-passwords-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.no-passwords {
+  height: 30%;
+  width: 40%;
+  background-size: cover;
 }
