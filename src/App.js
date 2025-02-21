@@ -12,6 +12,14 @@ class App extends Component {
     website: '',
     username: '',
     password: '',
+    count: 0,
+    searchInput: '',
+  }
+
+  onChangeSearchInput = event => {
+    this.setState({
+      searchInput: event.target.value,
+    })
   }
 
   onSubmitUserDetails = event => {
@@ -30,6 +38,7 @@ class App extends Component {
       website: '',
       username: '',
       password: '',
+      count: prevState.count + 1,
     }))
   }
 
@@ -62,7 +71,10 @@ class App extends Component {
   }
 
   render() {
-    const {usersPasswordsList} = this.state
+    const {usersPasswordsList, searchInput, count} = this.state
+    const searchResults = usersPasswordsList.filter(eachPasswordDetails =>
+      eachPasswordDetails.website.includes(searchInput),
+    )
     return (
       <div className="bg-container">
         <img
@@ -127,8 +139,17 @@ class App extends Component {
         </div>
 
         <div className="user-passwords-bg-container">
+          <div>
+            <p>Your Passwords {count}</p>
+            <input
+              type="search"
+              onChange={this.onChangeSearchInput}
+              value={searchInput}
+            />
+          </div>
+
           <div className="user-given-passwords-list-container">
-            {usersPasswordsList.map(eachUserPassword => (
+            {searchResults.map(eachUserPassword => (
               <div
                 key={eachUserPassword.id}
                 className="each-password-container"
