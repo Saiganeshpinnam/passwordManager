@@ -39,6 +39,7 @@ body {
   height: 50vh;
   width: 80vw;
   margin: 5px;
+  padding: 25px;
 }
 .adding-password-card-container {
   background-color: #454f84;
@@ -119,5 +120,34 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+.passwords-header-separator {
+  color: #94a3b8;
+  height: 2px;
+  width: 100%;
+}
+.passwords-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.search-container {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+}
+.search-icon {
+  height: 25px;
+  width: 25px;
+}
+.checkbox-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
   align-items: center;
 }

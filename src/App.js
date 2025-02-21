@@ -14,6 +14,7 @@ class App extends Component {
     password: '',
     count: 0,
     searchInput: '',
+    showPasswords: false,
   }
 
   onChangeSearchInput = event => {
@@ -61,17 +62,24 @@ class App extends Component {
   }
 
   deletePassword = id => {
-    const {usersPasswordsList} = this.state
+    const {usersPasswordsList, count} = this.state
     const filteredUsersPasswordData = usersPasswordsList.filter(
       eachPassword => eachPassword.id !== id,
     )
-    this.setState({
+    this.setState(prevState => ({
       usersPasswordsList: filteredUsersPasswordData,
-    })
+      count: prevState.count - 1,
+    }))
+  }
+
+  showUserPasswords = () => {
+    this.setState(prevState => ({
+      showPasswords: !prevState.showPasswords,
+    }))
   }
 
   render() {
-    const {usersPasswordsList, searchInput, count} = this.state
+    const {usersPasswordsList, searchInput, count, showPasswords} = this.state
     const searchResults = usersPasswordsList.filter(eachPasswordDetails =>
       eachPasswordDetails.website.includes(searchInput),
     )
@@ -139,13 +147,29 @@ class App extends Component {
         </div>
 
         <div className="user-passwords-bg-container">
-          <div>
+          <div className="passwords-header">
             <p>Your Passwords {count}</p>
+            <div className="search-container">
+              <img
+                src="https://assets.ccbp.in/frontend/react-js/password-manager-search-img.png"
+                className="search-icon"
+              />
+              <input
+                type="search"
+                onChange={this.onChangeSearchInput}
+                value={searchInput}
+              />
+            </div>
+          </div>
+          <hr className="passwords-header-separator" />
+
+          <div className="checkbox-container">
             <input
-              type="search"
-              onChange={this.onChangeSearchInput}
-              value={searchInput}
+              type="checkbox"
+              id="inputLabel"
+              onClick={this.showUserPasswords}
             />
+            <label htmlFor="inputLabel">Show Passwords</label>
           </div>
 
           <div className="user-given-passwords-list-container">
@@ -158,7 +182,14 @@ class App extends Component {
                 <div>
                   <p>{eachUserPassword.website}</p>
                   <p>{eachUserPassword.username}</p>
-                  <p>{eachUserPassword.password}</p>
+                  {showPasswords ? (
+                    <p>{eachUserPassword.password}</p>
+                  ) : (
+                    <img
+                      src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
+                      alt="stars"
+                    />
+                  )}
                 </div>
 
                 <button
