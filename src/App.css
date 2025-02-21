@@ -82,3 +82,42 @@ body {
   border-width: 0px;
   cursor: pointer;
 }
+.user-given-passwords-list-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.each-password-container {
+  height: 12%;
+  width: 15%;
+  border-color: #ffffff;
+  border-style: solid;
+  border-width: 1px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 7px;
+}
+.delete-btn {
+  background-color: transparent;
+  border-width: 0px;
+}
+.delete-icon {
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+}
+.user-initial {
+  background-color: #10b981;
+  height: 45px;
+  width: 45px;
+  border-radius: 45px;
+  color: #ffffff;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

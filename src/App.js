@@ -4,18 +4,10 @@ import {v4 as uuidv4} from 'uuid'
 
 import './App.css'
 
-const initialUsersPasswordList = [
-  {
-    id: uuidv4(),
-    website: '',
-    username: '',
-    password: '',
-  },
-]
+const initialUsersPasswordList = []
 
 class App extends Component {
   state = {
-    userWebsite: '',
     usersPasswordsList: initialUsersPasswordList,
     website: '',
     username: '',
@@ -56,6 +48,16 @@ class App extends Component {
   getUserPassword = event => {
     this.setState({
       password: event.target.value,
+    })
+  }
+
+  deletePassword = id => {
+    const {usersPasswordsList} = this.state
+    const filteredUsersPasswordData = usersPasswordsList.filter(
+      eachPassword => eachPassword.id !== id,
+    )
+    this.setState({
+      usersPasswordsList: filteredUsersPasswordData,
     })
   }
 
@@ -125,13 +127,33 @@ class App extends Component {
         </div>
 
         <div className="user-passwords-bg-container">
-          {usersPasswordsList.map(eachUserPassword => (
-            <div key={eachUserPassword.id}>
-              <p>{eachUserPassword.website}</p>
-              <p>{eachUserPassword.username}</p>
-              <p>{eachUserPassword.password}</p>
-            </div>
-          ))}
+          <div className="user-given-passwords-list-container">
+            {usersPasswordsList.map(eachUserPassword => (
+              <div
+                key={eachUserPassword.id}
+                className="each-password-container"
+              >
+                <h1 className="user-initial">{eachUserPassword.username[0]}</h1>
+                <div>
+                  <p>{eachUserPassword.website}</p>
+                  <p>{eachUserPassword.username}</p>
+                  <p>{eachUserPassword.password}</p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => this.deletePassword(eachUserPassword.id)}
+                  className="delete-btn"
+                >
+                  <img
+                    src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png"
+                    alt="delete"
+                    className="delete-icon"
+                  />
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     )
