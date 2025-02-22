@@ -36,7 +36,7 @@ class App extends Component {
 
     this.setState(prevState => ({
       usersPasswordsList: [...prevState.usersPasswordsList, newPassword],
-      website: '',
+      website,
       username: '',
       password: '',
       count: prevState.count + 1,
@@ -96,6 +96,7 @@ class App extends Component {
             className="adding-password-card-container"
             onSubmit={this.onSubmitUserDetails}
           >
+            <h1 className="passwords-heading">Add New Passwords</h1>
             <div className="user-input-container">
               <img
                 src="https://assets.ccbp.in/frontend/react-js/password-manager-website-img.png"
@@ -149,7 +150,9 @@ class App extends Component {
 
         <div className="user-passwords-bg-container">
           <div className="passwords-header">
-            <p>Your Passwords {count}</p>
+            <p className="your-passwords-heading">
+              Your Passwords <span className="passwords-count">{count}</span>
+            </p>
             <div className="search-container">
               <img
                 src="https://assets.ccbp.in/frontend/react-js/password-manager-search-img.png"
@@ -159,7 +162,9 @@ class App extends Component {
               <input
                 type="search"
                 onChange={this.onChangeSearchInput}
+                placeholder="Search"
                 value={searchInput}
+                className="search-placeholder"
               />
             </div>
           </div>
@@ -170,7 +175,9 @@ class App extends Component {
               id="inputLabel"
               onClick={this.showUserPasswords}
             />
-            <label htmlFor="inputLabel">Show Passwords</label>
+            <label htmlFor="inputLabel" className="show-passwords-label">
+              Show Passwords
+            </label>
           </div>
 
           {isCountZero === 0 ? (
@@ -178,8 +185,9 @@ class App extends Component {
               <img
                 src="https://assets.ccbp.in/frontend/react-js/no-passwords-img.png"
                 alt="no passwords"
-                className="no-passwords"
+                className="no-passwords-image"
               />
+              <h1 className="passwords-heading">No Passwords</h1>
             </div>
           ) : (
             <div className="user-given-passwords-list-container">
@@ -191,11 +199,13 @@ class App extends Component {
                   <h1 className="user-initial">
                     {eachUserPassword.username[0]}
                   </h1>
-                  <div>
-                    <p>{eachUserPassword.website}</p>
-                    <p>{eachUserPassword.username}</p>
+                  <div className="web-name-password-container">
+                    <p className="user-details">{eachUserPassword.website}</p>
+                    <p className="user-details">{eachUserPassword.username}</p>
                     {showPasswords ? (
-                      <p>{eachUserPassword.password}</p>
+                      <p className="user-details">
+                        {eachUserPassword.password}
+                      </p>
                     ) : (
                       <img
                         src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
