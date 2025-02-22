@@ -136,9 +136,11 @@ class App extends Component {
                 onChange={this.getUserPassword}
               />
             </div>
-            <button type="submit" className="add-btn">
-              Add
-            </button>
+            <div className="btn-container">
+              <button type="submit" className="add-btn">
+                Add
+              </button>
+            </div>
           </form>
 
           <img
