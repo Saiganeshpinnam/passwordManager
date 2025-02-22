@@ -130,7 +130,7 @@ class App extends Component {
                 alt="password"
               />
               <input
-                type="text"
+                type="password"
                 placeholder="Enter Password"
                 className="user-input form-control"
                 onChange={this.getUserPassword}
@@ -143,18 +143,32 @@ class App extends Component {
             </div>
           </form>
 
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/password-manager-lg-img.png"
-            className="adding-password-image"
-            alt="password manager"
-          />
+          <picture>
+            <source
+              media="(min-width:768px)"
+              srcSet="https://assets.ccbp.in/frontend/react-js/password-manager-lg-img.png"
+              className="adding-password-image"
+              alt="password manager"
+            />
+            <source
+              media="(max-width:767px)"
+              srcSet="https://assets.ccbp.in/frontend/react-js/password-manager-sm-img.png"
+              className="adding-password-image"
+              alt="password manager"
+            />
+            <img
+              src="https://assets.ccbp.in/frontend/react-js/password-manager-lg-img.png"
+              className="adding-password-image"
+              alt="password manager"
+            />
+          </picture>
         </div>
 
         <div className="user-passwords-bg-container">
           <div className="passwords-header">
-            <p className="your-passwords-heading">
+            <h1 className="your-passwords-heading">
               Your Passwords <span className="passwords-count">{count}</span>
-            </p>
+            </h1>
             <div className="search-container">
               <img
                 src="https://assets.ccbp.in/frontend/react-js/password-manager-search-img.png"
@@ -189,7 +203,7 @@ class App extends Component {
                 alt="no passwords"
                 className="no-passwords-image"
               />
-              <h1 className="passwords-heading">No Passwords</h1>
+              <p className="passwords-heading">No Passwords</p>
             </div>
           ) : (
             <div className="user-given-passwords-list-container">
