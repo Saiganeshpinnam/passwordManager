@@ -12,7 +12,6 @@ class App extends Component {
     website: '',
     username: '',
     password: '',
-    count: 0,
     searchInput: '',
     showPasswords: false,
   }
@@ -79,11 +78,14 @@ class App extends Component {
   }
 
   render() {
-    const {usersPasswordsList, searchInput, count, showPasswords} = this.state
-    const isCountZero = count
+    const {usersPasswordsList, searchInput, showPasswords} = this.state
+    // const isCountZero = count
     const searchResults = usersPasswordsList.filter(eachPasswordDetails =>
-      eachPasswordDetails.website.includes(searchInput),
+      eachPasswordDetails.website
+        .toLowerCase()
+        .includes(searchInput.toLowerCase()),
     )
+    const noOfPasswords = searchResults.length
     return (
       <div className="bg-container">
         <img
@@ -167,7 +169,8 @@ class App extends Component {
         <div className="user-passwords-bg-container">
           <div className="passwords-header">
             <h1 className="your-passwords-heading">
-              Your Passwords <span className="passwords-count">{count}</span>
+              Your Passwords{' '}
+              <span className="passwords-count">{noOfPasswords}</span>
             </h1>
             <div className="search-container">
               <img
@@ -196,7 +199,7 @@ class App extends Component {
             </label>
           </div>
 
-          {isCountZero === 0 ? (
+          {noOfPasswords === 0 ? (
             <div className="no-passwords-container">
               <img
                 src="https://assets.ccbp.in/frontend/react-js/no-passwords-img.png"
@@ -206,46 +209,50 @@ class App extends Component {
               <p className="passwords-heading">No Passwords</p>
             </div>
           ) : (
-            <div className="user-given-passwords-list-container">
-              {searchResults.map(eachUserPassword => (
-                <div
-                  key={eachUserPassword.id}
-                  className="each-password-container"
-                >
-                  <h1 className="user-initial">
-                    {eachUserPassword.username[0]}
-                  </h1>
-                  <div className="web-name-password-container">
-                    <p className="user-details">{eachUserPassword.website}</p>
-                    <p className="user-details">{eachUserPassword.username}</p>
-                    {showPasswords ? (
-                      <p className="user-details">
-                        {eachUserPassword.password}
-                      </p>
-                    ) : (
-                      <img
-                        src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
-                        alt="stars"
-                        className="encrypted-password-image"
-                      />
-                    )}
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={() => this.deletePassword(eachUserPassword.id)}
-                    className="delete-btn"
-                    data-testid="delete"
+            <ul>
+              <li className="user-given-passwords-list-container">
+                {searchResults.map(eachUserPassword => (
+                  <div
+                    key={eachUserPassword.id}
+                    className="each-password-container"
                   >
-                    <img
-                      src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png"
-                      alt="delete"
-                      className="delete-icon"
-                    />
-                  </button>
-                </div>
-              ))}
-            </div>
+                    <h1 className="user-initial">
+                      {eachUserPassword.username[0]}
+                    </h1>
+                    <div className="web-name-password-container">
+                      <p className="user-details">{eachUserPassword.website}</p>
+                      <p className="user-details">
+                        {eachUserPassword.username}
+                      </p>
+                      {showPasswords ? (
+                        <p className="user-details">
+                          {eachUserPassword.password}
+                        </p>
+                      ) : (
+                        <img
+                          src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
+                          alt="stars"
+                          className="encrypted-password-image"
+                        />
+                      )}
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => this.deletePassword(eachUserPassword.id)}
+                      className="delete-btn"
+                      data-testid="delete"
+                    >
+                      <img
+                        src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png"
+                        alt="delete"
+                        className="delete-icon"
+                      />
+                    </button>
+                  </div>
+                ))}
+              </li>
+            </ul>
           )}
         </div>
       </div>
