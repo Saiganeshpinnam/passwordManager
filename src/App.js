@@ -169,8 +169,7 @@ class App extends Component {
         <div className="user-passwords-bg-container">
           <div className="passwords-header">
             <h1 className="your-passwords-heading">
-              Your Passwords{' '}
-              <span className="passwords-count">{noOfPasswords}</span>
+              Your Passwords <p className="passwords-count">{noOfPasswords}</p>
             </h1>
             <div className="search-container">
               <img
@@ -210,12 +209,12 @@ class App extends Component {
             </div>
           ) : (
             <ul>
-              <li className="user-given-passwords-list-container">
-                {searchResults.map(eachUserPassword => (
-                  <div
-                    key={eachUserPassword.id}
-                    className="each-password-container"
-                  >
+              {searchResults.map(eachUserPassword => (
+                <li
+                  key={eachUserPassword.id}
+                  className="user-given-passwords-list-container"
+                >
+                  <div className="each-password-container">
                     <h1 className="user-initial">
                       {eachUserPassword.username[0]}
                     </h1>
@@ -250,8 +249,8 @@ class App extends Component {
                       />
                     </button>
                   </div>
-                ))}
-              </li>
+                </li>
+              ))}
             </ul>
           )}
         </div>
